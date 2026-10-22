@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Campus Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <section class="auth-shell" id="authView">
+      <div class="auth-brand">
+        <div class="brand-mark">C<span>+</span></div>
+        <div><div class="brand-name">Campus<span>Connect</span></div><div class="brand-sub">YOUR CAMPUS. ONE COMMUNITY.</div></div>
+      </div>
+      <div class="auth-card">
+        <div class="eyebrow">STUDENT NETWORK</div>
+        <h1 id="authTitle">Welcome back.</h1>
+        <p class="muted" id="authHint">Sign in to connect with your campus community.</p>
+        <div class="tabs"><button class="tab active" id="loginTab">Sign in</button><button class="tab" id="registerTab">Create account</button></div>
+        <form id="authForm">
+          <label id="nameLabel" class="hidden">Full name<input id="displayName" autocomplete="name" placeholder="e.g. Arnav Pophale"></label>
+          <label>Username<input id="username" autocomplete="username" placeholder="your_username" required minlength="3"></label>
+          <label>Password<input id="password" type="password" autocomplete="current-password" placeholder="At least 6 characters" required minlength="6"></label>
+          <button class="primary full" type="submit" id="authSubmit">Sign in <span>→</span></button>
+          <p id="authError" class="error" role="alert"></p>
+        </form>
+        <div class="auth-foot"><span class="status-dot"></span> Private student conversations · Live messaging</div>
+      </div>
+      <div class="auth-bottom">BUILT FOR STUDENTS <span>•</span> POWERED BY CONNECTION</div>
+    </section>
+
+    <section id="mainView" class="app-shell hidden">
+      <aside class="sidebar">
+        <div class="side-brand"><div class="brand-mark small">C<span>+</span></div><div class="brand-name">Campus<span>Connect</span></div></div>
+        <div class="profile-card"><div id="myAvatar" class="avatar">A</div><div class="profile-text"><strong id="myName">Student</strong><span><i class="status-dot"></i> Available</span></div><button id="logoutBtn" class="icon-button" title="Sign out">↗</button></div>
+        <div class="side-label">WORKSPACE</div>
+        <button class="nav-item selected" id="chatsNav"><span class="nav-icon">▤</span> Messages <span class="nav-count" id="peopleCount">0</span></button>
+        <button class="nav-item" id="monitorNav"><span class="nav-icon">⌁</span> Network monitor</button>
+        <div class="side-label people-label">CAMPUS PEOPLE <span id="onlineCount">0 ONLINE</span></div>
+        <div id="peopleList" class="people-list"></div>
+        <div class="sidebar-bottom"><div class="secure-icon">⌑</div><div><strong>Connected securely</strong><span>Live campus network</span></div><span class="green-pulse"></span></div>
+      </aside>
+      <main class="content">
+        <header class="topbar"><div><div class="eyebrow">CAMPUS NETWORK / <span id="pageEyebrow">MESSAGES</span></div><h2 id="pageTitle">Your conversations</h2></div><div class="top-actions"><span class="live-pill"><i></i> LIVE</span><div class="top-avatar" id="topAvatar">A</div></div></header>
+        <section id="chatView" class="chat-layout">
+          <div id="emptyState" class="empty-state"><div class="empty-art"><div class="art-bubble">✦</div><div class="art-card"><span></span><span></span><span></span></div></div><h2>Your campus, connected.</h2><p>Select a student from the left to start a conversation.<br>Messages arrive instantly, wherever campus takes you.</p><div class="feature-pills"><span>↯ Real-time chat</span><span>⌁ Network insights</span><span>↥ File sharing</span></div></div>
+          <div id="conversation" class="conversation hidden">
+            <div class="conversation-head"><div id="peerAvatar" class="avatar">S</div><div class="peer-info"><strong id="peerName">Student</strong><span id="peerStatus"><i class="status-dot"></i> Offline</span></div><div class="conversation-tag">DIRECT MESSAGE</div></div>
+            <div id="messages" class="messages"></div>
+            <form id="messageForm" class="composer"><label class="attach-button" title="Share a file">＋<input type="file" id="fileInput" hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.gif,.webp,.txt,.csv,.zip"></label><input id="messageInput" placeholder="Write a message..." maxlength="2000" autocomplete="off"><button class="send-button" type="submit">Send <span>↗</span></button></form>
+            <div class="composer-note">Enter to send <span>·</span> Files up to 20 MB</div>
+          </div>
+        </section>
+        <section id="monitorView" class="monitor-view hidden">
+          <div class="monitor-intro"><div><div class="eyebrow">REAL-TIME TELEMETRY</div><h2>Network monitor</h2><p class="muted">Live metrics measured by the running server, not simulated.</p></div><span class="live-pill"><i></i> STREAMING</span></div>
+          <div class="metric-grid">
+            <article class="metric-card"><span class="metric-icon purple">⌘</span><span class="metric-label">ONLINE STUDENTS</span><strong id="mOnline">0</strong><small>Currently connected</small></article>
+            <article class="metric-card"><span class="metric-icon blue">↔</span><span class="metric-label">ACTIVE CONNECTIONS</span><strong id="mConnections">0</strong><small>Socket.IO clients</small></article>
+            <article class="metric-card"><span class="metric-icon green">↗</span><span class="metric-label">MESSAGES STORED</span><strong id="mMessages">0</strong><small>Saved in local database</small></article>
+            <article class="metric-card"><span class="metric-icon orange">▧</span><span class="metric-label">FILES SHARED</span><strong id="mFiles">0</strong><small id="mBytes">0 bytes transferred</small></article>
+          </div>
+          <div class="monitor-panel"><div class="panel-head"><div><h3>Connection architecture</h3><p>How a message travels through Campus Connect</p></div><span class="live-pill"><i></i> ACTIVE</span></div>
+            <div class="network-flow"><div class="network-node"><span class="node-icon">▣</span><strong>Student browser</strong><small>Socket.IO client</small></div><div class="flow-line"><span>WebSocket / TCP</span><b>→</b></div><div class="network-node server-node"><span class="node-icon">▤</span><strong>Node.js server</strong><small>Auth · routing · storage</small></div><div class="flow-line"><span>WebSocket / TCP</span><b>→</b></div><div class="network-node"><span class="node-icon">▣</span><strong>Peer browser</strong><small>Message received</small></div></div>
+          </div>
+          <div class="monitor-panel facts"><h3>What this demonstrates</h3><div class="fact-grid"><div><b>01 / CLIENT–SERVER</b><p>Every message is routed through the central Node.js server.</p></div><div><b>02 / TCP TRANSPORT</b><p>Socket.IO uses WebSocket over TCP when available.</p></div><div><b>03 / REAL-TIME EVENTS</b><p>Messages and presence are pushed to connected clients.</p></div><div><b>04 / HTTP TRANSFERS</b><p>Files are uploaded and downloaded using HTTP requests.</p></div></div></div>
+        </section>
+        <footer class="app-footer"><span>Campus Connect <b>•</b> Computer Networks Project</span><span><i class="status-dot"></i> Server connection active</span></footer>
+      </main>
+    </section>
+    <div id="toast" class="toast"></div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
