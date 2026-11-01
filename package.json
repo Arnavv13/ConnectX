@@ -1,8 +1,8 @@
 {
-  "name": "campus-connect",
+  "name": "ConnectX",
   "version": "1.0.0",
   "private": true,
-  "description": "Campus Connect - real-time campus chat and file sharing for a Computer Networks project",
+  "description": "ConnectX - real-time campus chat and file sharing for a Computer Networks project",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
